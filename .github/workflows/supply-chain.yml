@@ -52,8 +52,10 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         if: always()
         with:
-
-        # Install GuardDog via pip 
+          sarif_file: results.sarif
+          category: "grype-sbom"
+ 
+   # Install GuardDog via pip 
       - name: Install GuardDog & jq 
         run: | 
           pip3 install guarddog 
@@ -83,5 +85,3 @@ jobs:
               --exclude-rules unclaimed_maintainer_email_domain || true 
           done 
         continue-on-error: true
-          sarif_file: results.sarif
-          category: "grype-sbom"
